@@ -1,14 +1,16 @@
+'use client';
+
 import { SOCKET_URLS } from '@/shared/constants';
 import { Socket, io } from 'socket.io-client';
 import { create } from 'zustand';
 
-type ChatStoreState = {
+type ChatSocketStoreState = {
   socketInstance: Socket | null;
   connect: () => void;
   disconnect: () => void;
 };
 
-export const useChatStore = create<ChatStoreState>((set, get) => ({
+export const useChatSocketStore = create<ChatSocketStoreState>((set, get) => ({
   socketInstance: null,
 
   // 소켓 인스턴스가 없을 때만 생성하고, 연결 상태를 저장합니다.

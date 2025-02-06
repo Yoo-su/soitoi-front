@@ -1,3 +1,5 @@
+'use client';
+
 export const ADJECTIVES = [
   '빠른',
   '느린',

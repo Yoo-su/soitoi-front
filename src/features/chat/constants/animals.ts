@@ -1,3 +1,5 @@
+'use client';
+
 export const ANIMALS = [
   '호랑이',
   '사자',

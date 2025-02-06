@@ -1,3 +1,5 @@
+'use client';
+
 import { ANIMALS, ADJECTIVES } from '../constants';
 
 export const generateRandomNickname = () => {

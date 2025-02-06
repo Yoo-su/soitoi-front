@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from 'react';
-import { useChatStore } from '../stores';
+import { useChatSocketStore } from '../stores';
 
 export const useChatSocketService = () => {
-  const socketinstance = useChatStore((state) => state.socketInstance);
-  const connect = useChatStore((state) => state.connect);
-  const disconnect = useChatStore((state) => state.disconnect);
+  const socketinstance = useChatSocketStore((state) => state.socketInstance);
+  const connect = useChatSocketStore((state) => state.connect);
+  const disconnect = useChatSocketStore((state) => state.disconnect);
 
   const handleFindAllChats = useCallback(() => {
     socketinstance?.emit('findAllChat', () => {});
@@ -12,11 +12,12 @@ export const useChatSocketService = () => {
 
   useEffect(() => {
     connect();
+    socketinstance?.on('chat-created', () => {});
 
     return () => {
       disconnect();
     };
-  }, [connect, disconnect]);
+  }, [socketinstance, connect, disconnect]);
 
   return {
     handleFindAllChats,
