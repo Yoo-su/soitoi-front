@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { BaseLayout } from '@/shared/components/layouts';
+import { QueryProvider } from '@/shared/components/providers';
 
 export const metadata: Metadata = {
   title: 'next-app',
@@ -13,7 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='kor'>
-      <body>{children}</body>
+      <body>
+        <QueryProvider>
+          <BaseLayout>{children}</BaseLayout>
+        </QueryProvider>
+      </body>
     </html>
   );
 }

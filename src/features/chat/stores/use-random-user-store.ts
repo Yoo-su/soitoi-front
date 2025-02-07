@@ -2,28 +2,32 @@
 
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { generateRandomNickname } from '../utils';
+import { generateRandomNickname, generateRandomColorCode } from '../utils';
+import { User } from '../types';
 
 type RandomUserStoreState = {
-  nickname: string;
-  setNickname: () => void;
-  createNickname: () => void;
+  user: User | null;
+  createUser: () => void;
 };
 export const useRandomUserStore = create<RandomUserStoreState>()(
   persist(
     (set, get) => ({
-      nickname: '',
-      setNickname: () => set({ nickname: generateRandomNickname() }),
-      createNickname: () => {
-        if (get().nickname) return;
-        get().setNickname();
+      user: null,
+      createUser: () => {
+        if (get().user) return;
+        set({
+          user: {
+            nickname: generateRandomNickname(),
+            color: generateRandomColorCode(),
+          },
+        });
       },
     }),
     {
       name: 'random-user-store',
       storage: createJSONStorage(() => sessionStorage),
       partialize: (state) => ({
-        nickname: state.nickname,
+        user: state.user,
       }),
     }
   )

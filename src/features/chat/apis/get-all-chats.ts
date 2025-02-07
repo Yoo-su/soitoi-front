@@ -1,7 +1,8 @@
 import { API_URLS } from '@/shared/constants';
 import { axiosInstance } from '@/shared/plugins';
+import { Chat } from '../types';
 
-export const getChats = async () => {
-  const { data } = await axiosInstance.get(API_URLS.GET_ALL_CHATS);
+export const getAllChats = async () => {
+  const { data } = await axiosInstance.get<Chat[]>(API_URLS.GET_ALL_CHATS);
   return data;
 };

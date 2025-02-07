@@ -1,4 +1,6 @@
+import { ChatPageComponent } from '@/app-pages/chat-page/components';
+
 const ChatPage = () => {
-  return <div>CP</div>;
+  return <ChatPageComponent />;
 };
 export default ChatPage;

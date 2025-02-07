@@ -1,1 +1,1 @@
-export { Room } from './room';
+export { ChatRoom } from './chat-modal';

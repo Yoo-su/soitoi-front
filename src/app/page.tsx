@@ -1,5 +1,3 @@
-import { ChatPageComponent } from '@/app-pages/chat-page/components';
+import ChatPage from './chat/page';
 
-export default function Home() {
-  return <ChatPageComponent />;
-}
+export default ChatPage;
