@@ -1,6 +1,7 @@
 export type Chat = {
-  id: string;
+  id: number;
   nickname: string;
+  color: string;
   message: string;
-  createdAt: string;
+  created_at: string;
 };
