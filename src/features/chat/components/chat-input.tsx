@@ -1,32 +1,37 @@
-import { useState } from 'react';
-import { Button, Input } from '@headlessui/react';
-import { debounce } from 'lodash';
-import { useChatRoomStore, useChatSocketStore } from '../stores';
+import { ChangeEvent, useState } from "react";
+import { Button, Input } from "@headlessui/react";
+import { debounce } from "lodash";
+import { useChatRoomStore, useChatSocketStore } from "../stores";
 
 export const ChatInput = () => {
   const roomID = useChatRoomStore((state) => state.currentRoomID);
   const socketInstance = useChatSocketStore((state) => state.socketInstance);
-  const [chatInput, setChatInput] = useState<string>('');
+  const [chatInput, setChatInput] = useState<string>("");
 
-  const handleChangeChatInput = (newChat: string) => {
-    debounce(() => {
-      setChatInput(newChat);
-    }, 500);
+  const handleChangeChatInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setChatInput(event.target.value);
   };
 
   const handleSubmitChat = () => {
-    const newChat = socketInstance?.emit('new-chat');
+    const newChat = socketInstance?.emit("new-chat");
   };
 
   return (
-    <div className={'w-full flex flew-row items-center px-1 py-2'}>
+    <div
+      className={
+        "w-full flex flew-row gap-4 p-4 items-center border border-slate-100 rounded-lg shadow-md "
+      }
+    >
       <Input
-        onChange={(e) => handleChangeChatInput(e.target.value)}
-        className={'flex-grow border-none'}
-        name={'chat'}
+        onChange={handleChangeChatInput}
+        className={"flex-grow border-none rounded-md px-2 focus:outline-none"}
+        name={"chat"}
         value={chatInput}
+        placeholder={"메시지를 입력하세요. . ."}
       />
-      <Button className={'bg-stone-600 text-white'}>send</Button>
+      <Button className={"rounded-full w-fit bg-[#459046] text-white px-2 "}>
+        {`>`}
+      </Button>
     </div>
   );
 };

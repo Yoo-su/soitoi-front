@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
-import { generateRandomNickname, generateRandomColorCode } from '../utils';
-import { User } from '../types';
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
+import { generateRandomNickname, generateRandomColorCode } from "../utils";
+import { User } from "../types";
 
 type RandomUserStoreState = {
   user: User | null;
@@ -24,8 +24,8 @@ export const useRandomUserStore = create<RandomUserStoreState>()(
       },
     }),
     {
-      name: 'random-user-store',
-      storage: createJSONStorage(() => sessionStorage),
+      name: "random-user-store",
+      storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         user: state.user,
       }),
