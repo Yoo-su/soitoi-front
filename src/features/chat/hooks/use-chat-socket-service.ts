@@ -35,7 +35,7 @@ export const useChatSocketService = () => {
           setTypingUsers([...typingUsers]);
           queryClient.setQueryData(
             QUERY_KEYS.chat.list().queryKey,
-            (oldData: Chat[]) => {
+            (oldData: Chat[] = []) => {
               return [...oldData, newChat];
             }
           );
@@ -45,6 +45,7 @@ export const useChatSocketService = () => {
     return () => {
       if (socketInstance) {
         socketInstance.off('typing-users');
+        socketInstance.off('chat-updates');
       }
     };
   }, [socketInstance]);

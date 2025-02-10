@@ -1,4 +1,5 @@
 import { Button, Input } from '@headlessui/react';
+import { DiCoda } from 'react-icons/di';
 
 import { useChatInputHandler } from '../hooks/use-chat-input-handler';
 
@@ -20,10 +21,12 @@ export const ChatInput = () => {
         placeholder={'메시지를 입력하세요. . .'}
       />
       <Button
-        className={'rounded-full w-fit bg-[#459046] text-white px-2'}
+        className={
+          'flex justify-center items-center rounded-full w-10 h-10 bg-[#459046] text-white px-2'
+        }
         onClick={handleSubmitMessage}
       >
-        {`>`}
+        {<DiCoda size={26} />}
       </Button>
     </div>
   );
