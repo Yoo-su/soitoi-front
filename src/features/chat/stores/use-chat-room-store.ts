@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 
 type ChatRoomStoreState = {
-  currentRoomID: number | null;
+  currentRoomID: string | null;
   isChatModalOpen: boolean;
 
-  setCurrentRoomID: (roomID: number) => void;
+  setCurrentRoomID: (roomID: string) => void;
   toggleChatModal: () => void;
 };
 export const useChatRoomStore = create<ChatRoomStoreState>((set) => ({

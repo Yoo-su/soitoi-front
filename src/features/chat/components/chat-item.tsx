@@ -1,5 +1,5 @@
-import { cn } from "@/shared/utils";
-import { ReactNode } from "react";
+import { cn } from '@/shared/utils';
+import { ReactNode } from 'react';
 
 type AvatarProps = {
   color: string;
@@ -7,7 +7,7 @@ type AvatarProps = {
 const Avatar = ({ color }: AvatarProps) => {
   return (
     <div
-      className={cn("w-[18px] h-[18px] rounded-full border border-slate-200")}
+      className={cn('w-[18px] h-[18px] rounded-full border border-slate-200')}
       style={{ backgroundColor: color }}
     />
   );
@@ -17,19 +17,19 @@ type NicknameProps = {
   nickname: string;
 };
 const Nickname = ({ nickname }: NicknameProps) => {
-  return <b className={"text-slate-500 text-sm"}>{nickname}</b>;
+  return <b className={'text-slate-500 text-sm'}>{nickname}</b>;
 };
 
 type UserInfoProps = {
-  self: boolean;
+  self?: boolean;
   children: ReactNode;
 };
-export const UserInfo = ({ self, children }: UserInfoProps) => {
+export const UserInfo = ({ self = false, children }: UserInfoProps) => {
   return (
     <div
       className={cn(
-        "flex flex-row gap-1 items-center ml-1",
-        self ? "self-end" : "self-start"
+        'flex flex-row gap-1 items-center ml-1',
+        self ? 'self-end' : 'self-start'
       )}
     >
       {children}
@@ -38,16 +38,16 @@ export const UserInfo = ({ self, children }: UserInfoProps) => {
 };
 
 type MessageProps = {
-  self: boolean;
-  message: string;
+  self?: boolean;
+  message: string | ReactNode;
 };
-const Message = ({ self, message }: MessageProps) => {
+const Message = ({ self = false, message }: MessageProps) => {
   return (
     <div
       className={`max-w-md p-3 rounded-lg shadow-md break-words ${
         self
-          ? "self-end bg-blue-500 text-white"
-          : "self-start bg-gray-200 text-gray-800"
+          ? 'self-end bg-blue-500 text-white'
+          : 'self-start bg-gray-200 text-gray-800'
       }`}
     >
       {message}
@@ -56,15 +56,15 @@ const Message = ({ self, message }: MessageProps) => {
 };
 
 type ChatItemProps = {
-  self: boolean;
+  self?: boolean;
   children: ReactNode;
 };
-export const ChatItem = ({ self, children }: ChatItemProps) => {
+export const ChatItem = ({ self = false, children }: ChatItemProps) => {
   return (
     <div
       className={cn(
-        "max-w-md flex flex-col items-start gap-1",
-        self ? "self-end" : "self-start"
+        'max-w-md flex flex-col items-start gap-1',
+        self ? 'self-end' : 'self-start'
       )}
     >
       {children}

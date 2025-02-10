@@ -1,1 +1,2 @@
-export const NEW_CHAT = 'new-chat';
+export const CHAT_CREATED = 'CHAT_CREATED';
+export const test = '';
