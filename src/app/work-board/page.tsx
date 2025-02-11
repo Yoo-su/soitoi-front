@@ -1,4 +1,6 @@
+import { WorkPageComponent } from '@/app-pages/work-page/components/work-page';
+
 const WorkBoardPage = () => {
-  return <div>board</div>;
+  return <WorkPageComponent />;
 };
 export default WorkBoardPage;

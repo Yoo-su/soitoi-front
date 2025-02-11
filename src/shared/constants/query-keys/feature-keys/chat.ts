@@ -2,7 +2,7 @@ import { createQueryKeys } from '@lukemorales/query-key-factory';
 
 export const CHAT_KEYS = createQueryKeys('chat', {
   // 채팅 목록을 가져올 때 사용하는 쿼리 키
-  list: () => ['chat', 'list'] as const,
+  list: null,
 
   // 특정 채팅방의 상세 정보를 가져올 때 사용하는 쿼리 키 (chatId를 파라미터로 받음)
   detail: (chatId: string) => ['chat', 'detail', chatId] as const,

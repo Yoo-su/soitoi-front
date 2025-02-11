@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { SyncLoader } from 'react-spinners';
-import { useRandomUserStore } from '../stores';
+import { useRandomUserStore } from '@/shared/stores';
 import { ChatItem } from './chat-item';
 import { useGetAllChatsQuery } from '../hooks';
 

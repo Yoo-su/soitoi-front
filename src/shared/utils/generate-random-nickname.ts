@@ -1,6 +1,6 @@
 'use client';
 
-import { ANIMALS, ADJECTIVES } from '../constants';
+import { ANIMALS, ADJECTIVES } from '@/shared/constants';
 
 export const generateRandomNickname = () => {
   const adj = ADJECTIVES[Math.floor(Math.random() * ADJECTIVES.length)];
