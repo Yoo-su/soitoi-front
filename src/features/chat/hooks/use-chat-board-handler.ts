@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
-import { useChatSocketStore, useRandomUserStore } from '../stores';
-import { Chat, User } from '../types';
+import { useChatSocketStore } from '../stores';
+import { useRandomUserStore } from '@/shared/stores';
+import { Chat } from '../types';
+import { User } from '@/shared/types';
 import { useQueryClient } from '@tanstack/react-query';
 import { QUERY_KEYS } from '@/shared/constants/query-keys';
 
@@ -13,8 +15,7 @@ export const useChatBoardHandler = () => {
   const disconnect = useChatSocketStore((state) => state.disconnect);
 
   useEffect(() => {
-    if (!user) return;
-    connect(user);
+    connect(user!);
     return () => {
       disconnect();
     };
