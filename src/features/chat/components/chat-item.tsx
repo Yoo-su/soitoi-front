@@ -1,5 +1,12 @@
 import { cn } from '@/shared/utils';
 import { ReactNode } from 'react';
+import { motion } from 'framer-motion'; // 또는 motion one의 React API 사용
+
+// 애니메이션 Variants (재사용 가능)
+const chatItemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+};
 
 type AvatarProps = {
   color: string;
@@ -17,7 +24,7 @@ type NicknameProps = {
   nickname: string;
 };
 const Nickname = ({ nickname }: NicknameProps) => {
-  return <b className={'text-slate-500 text-sm'}>{nickname}</b>;
+  return <b className='text-slate-500 text-sm'>{nickname}</b>;
 };
 
 type UserInfoProps = {
@@ -61,16 +68,22 @@ type ChatItemProps = {
 };
 export const ChatItem = ({ self = false, children }: ChatItemProps) => {
   return (
-    <div
+    <motion.div
+      variants={chatItemVariants}
+      initial='hidden'
+      animate='visible'
+      exit='hidden'
+      transition={{ duration: 0.3, ease: 'easeOut' }}
       className={cn(
         'max-w-md flex flex-col items-start gap-1',
         self ? 'self-end' : 'self-start'
       )}
     >
       {children}
-    </div>
+    </motion.div>
   );
 };
+
 ChatItem.Avatar = Avatar;
 ChatItem.Nickname = Nickname;
 ChatItem.UserInfo = UserInfo;

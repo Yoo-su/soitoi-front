@@ -4,7 +4,7 @@ import { getAllChats } from '../../apis';
 
 export const useGetAllChatsQuery = (roomID: string) => {
   return useQuery({
-    queryKey: QUERY_KEYS.chat.list().queryKey,
+    queryKey: QUERY_KEYS.chat.list.queryKey,
     queryFn: () => getAllChats(roomID),
     enabled: !!roomID,
   });
