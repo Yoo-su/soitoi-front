@@ -2,11 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { SyncLoader } from 'react-spinners';
 import { useRandomUserStore } from '@/shared/stores';
 import { ChatItem } from './chat-item';
-import { useGetAllChatsQuery } from '../hooks';
+import { useChatBoardHandler, useGetAllChatsQuery } from '../hooks';
 
 export const ChatBoard = () => {
   const user = useRandomUserStore((state) => state.user);
   const typingUsers = useRandomUserStore((state) => state.typingUsers);
+  const { isConnected } = useChatBoardHandler();
   const { data: chats } = useGetAllChatsQuery('1');
 
   // 스크롤을 항상 맨 아래로 유지하기 위한 ref

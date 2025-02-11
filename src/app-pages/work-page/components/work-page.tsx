@@ -1,11 +1,11 @@
 'use client';
 
-import { Board } from '@/features/work-board/components/board';
+import { Container } from '@/features/work-board/components/container';
 
 export const WorkPageComponent = () => {
   return (
-    <div className='bg-[#00839A] w-full min-h-[620px]'>
-      <Board />
+    <div className='w-full min-h-[620px] flex justify-center'>
+      <Container />
     </div>
   );
 };
