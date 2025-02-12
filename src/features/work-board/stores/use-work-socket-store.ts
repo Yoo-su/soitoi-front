@@ -17,7 +17,7 @@ export const useWorkSocketStore = create<WorkSocketStoreState>((set, get) => ({
   // 소켓 인스턴스가 없을 때만 생성하고, 연결 상태를 저장합니다.
   connect: (user: User) => {
     if (!get().socketInstance) {
-      const socket = io(SOCKET_URLS.CHAT, {
+      const socket = io(SOCKET_URLS.WORK_BOARD, {
         transports: ['websocket'],
         auth: {
           user: user,

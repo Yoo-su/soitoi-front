@@ -32,11 +32,11 @@ export const StatusColumn = ({ status, works }: StatusColumnProps) => {
           </div>
 
           <div className={'flex flex-col gap-2 bg-[#F1F2F4] p-2'}>
-            {works.map((work) => (
-              <WorkCard key={work.id} {...work} />
+            {works.map((work, index) => (
+              <WorkCard key={work.id} {...work} index={index} />
             ))}
+            {provided.placeholder}
           </div>
-          {provided.placeholder}
         </div>
       )}
     </Droppable>

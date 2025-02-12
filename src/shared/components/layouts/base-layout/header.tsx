@@ -32,7 +32,7 @@ const Header = () => {
   return (
     <header
       className={cn(
-        'bg-white fixed top-0 w-full shadow-md flex items-center justify-between transition-all duration-500',
+        'bg-white fixed z-50 top-0 w-full shadow-md flex items-center justify-between transition-all duration-500',
         scrolled ? 'bg-opacity-50' : 'bg-opacity-100',
         scrolled ? 'p-2' : 'p-3'
       )}
