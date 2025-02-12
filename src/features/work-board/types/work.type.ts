@@ -1,5 +1,5 @@
 export type Work = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   status: 'planned' | 'in_progress' | 'done';
