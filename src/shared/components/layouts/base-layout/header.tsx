@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
 import { Button } from '@headlessui/react';
+import { useEffect, useState } from 'react';
+
 import { cn } from '@/shared/utils';
 
 const Header = () => {
@@ -32,33 +33,29 @@ const Header = () => {
   return (
     <header
       className={cn(
-        'bg-white fixed z-50 top-0 w-full shadow-md flex items-center justify-between transition-all duration-500',
+        'fixed top-0 z-50 flex w-full items-center justify-between bg-white shadow-md transition-all duration-500',
         scrolled ? 'bg-opacity-50' : 'bg-opacity-100',
         scrolled ? 'p-2' : 'p-3'
       )}
     >
-      <div className='flex items-center gap-4'>
-        <Button className='w-6 h-6'>☰</Button>
+      <div className="flex items-center gap-4">
+        <Button className="size-6">☰</Button>
       </div>
 
-      <nav className={cn('lg:flex gap-6 items-center hidden')}>
+      <nav className={cn('hidden items-center gap-6 lg:flex')}>
         {navItems.map((item) => (
-          <a
-            href={item.href}
-            key={item.href}
-            className='text-gray-800 hover:text-green-600 text-sm font-medium'
-          >
+          <a href={item.href} key={item.href} className="text-sm font-medium text-gray-800 hover:text-green-600">
             {item.title}
           </a>
         ))}
       </nav>
 
-      <div className='flex items-center gap-4'>
-        <div className='relative'>
+      <div className="flex items-center gap-4">
+        <div className="relative">
           <input
-            type='text'
-            placeholder='Search'
-            className='border border-gray-300 rounded-full px-3 py-1 text-sm focus:outline-none focus:ring focus:ring-green-300'
+            type="text"
+            placeholder="Search"
+            className="rounded-full border border-gray-300 px-3 py-1 text-sm focus:outline-none focus:ring focus:ring-green-300"
           />
         </div>
       </div>

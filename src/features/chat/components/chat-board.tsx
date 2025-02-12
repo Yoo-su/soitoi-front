@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { SyncLoader } from 'react-spinners';
+
 import { useRandomUserStore } from '@/shared/stores';
-import { ChatItem } from './chat-item';
+
 import { useChatBoardHandler, useGetAllChatsQuery } from '../hooks';
+import { ChatItem } from './chat-item';
 
 export const ChatBoard = () => {
   const user = useRandomUserStore((state) => state.user);
@@ -19,7 +21,7 @@ export const ChatBoard = () => {
   }, [chats, typingUsers]);
 
   return (
-    <div className='flex flex-col w-full h-full p-4 space-y-6 overflow-y-auto bg-gray-50 scrollbar-hide'>
+    <div className="flex size-full flex-col space-y-6 overflow-y-auto bg-gray-50 p-4 scrollbar-hide">
       {chats?.map((chat) => {
         const self = chat.nickname === user?.nickname;
         return (
@@ -43,11 +45,7 @@ export const ChatBoard = () => {
           </ChatItem.UserInfo>
           <ChatItem.Message
             message={
-              <div
-                className={
-                  'flex flex-row justify-center items-center py-2 w-36'
-                }
-              >
+              <div className={'flex w-36 flex-row items-center justify-center py-2'}>
                 <SyncLoader size={4} />
               </div>
             }

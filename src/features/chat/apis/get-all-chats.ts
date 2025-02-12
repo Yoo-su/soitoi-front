@@ -1,5 +1,6 @@
 import { API_URLS } from '@/shared/constants';
 import { axiosInstance } from '@/shared/plugins';
+
 import { Chat } from '../types';
 
 export const getAllChats = async (roomID: string) => {

@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
-import { useChatSocketStore } from '../stores';
-import { useRandomUserStore } from '@/shared/stores';
-import { Chat } from '../types';
-import { User } from '@/shared/types';
 import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
+
 import { QUERY_KEYS } from '@/shared/constants/query-keys';
+import { useRandomUserStore } from '@/shared/stores';
+import { User } from '@/shared/types';
+
+import { useChatSocketStore } from '../stores';
+import { Chat } from '../types';
 
 export const useChatSocketService = () => {
   const queryClient = useQueryClient();
@@ -25,27 +27,17 @@ export const useChatSocketService = () => {
     if (socketInstance) {
       // 메시지를 입력중인 사용자에 대한 이벤트
       socketInstance.on('typing-users', (typingUsers: User[]) => {
-        setTypingUsers(
-          [...typingUsers].filter(
-            (typingUser) => typingUser.nickname !== user?.nickname
-          )
-        );
+        setTypingUsers([...typingUsers].filter((typingUser) => typingUser.nickname !== user?.nickname));
       });
 
       // 새로운 chat 등록 이벤트
-      socketInstance.on(
-        'chat-updates',
-        (data: { typingUsers: User[]; newChat: Chat }) => {
-          const { typingUsers, newChat } = data;
-          setTypingUsers([...typingUsers]);
-          queryClient.setQueryData(
-            QUERY_KEYS.chat.list.queryKey,
-            (oldData: Chat[] = []) => {
-              return [...oldData, newChat];
-            }
-          );
-        }
-      );
+      socketInstance.on('chat-updates', (data: { typingUsers: User[]; newChat: Chat }) => {
+        const { typingUsers, newChat } = data;
+        setTypingUsers([...typingUsers]);
+        queryClient.setQueryData(QUERY_KEYS.chat.list.queryKey, (oldData: Chat[] = []) => {
+          return [...oldData, newChat];
+        });
+      });
     }
     return () => {
       if (socketInstance) {

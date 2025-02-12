@@ -1,8 +1,9 @@
 'use client';
 
-import { SOCKET_URLS } from '@/shared/constants';
-import { Socket, io } from 'socket.io-client';
+import { io, Socket } from 'socket.io-client';
 import { create } from 'zustand';
+
+import { SOCKET_URLS } from '@/shared/constants';
 import { User } from '@/shared/types';
 
 type WorkSocketStoreState = {

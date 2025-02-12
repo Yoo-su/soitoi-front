@@ -1,5 +1,7 @@
-import { QUERY_KEYS } from '@/shared/constants/query-keys';
 import { useQuery } from '@tanstack/react-query';
+
+import { QUERY_KEYS } from '@/shared/constants/query-keys';
+
 import { getAllChats } from '../../apis';
 
 export const useGetAllChatsQuery = (roomID: string) => {

@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { getAllRooms } from '../../apis/get-all-rooms';
+
 import { QUERY_KEYS } from '@/shared/constants/query-keys';
+
+import { getAllRooms } from '../../apis/get-all-rooms';
 
 export const useGetAllRoomsQuery = () => {
   return useQuery({

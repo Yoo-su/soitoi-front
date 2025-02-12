@@ -1,6 +1,7 @@
-import { cn } from '@/shared/utils';
-import { ReactNode } from 'react';
 import { motion } from 'framer-motion'; // 또는 motion one의 React API 사용
+import { ReactNode } from 'react';
+
+import { cn } from '@/shared/utils';
 
 // 애니메이션 Variants (재사용 가능)
 const chatItemVariants = {
@@ -13,10 +14,7 @@ type AvatarProps = {
 };
 const Avatar = ({ color }: AvatarProps) => {
   return (
-    <div
-      className={cn('w-[18px] h-[18px] rounded-full border border-slate-200')}
-      style={{ backgroundColor: color }}
-    />
+    <div className={cn('h-[18px] w-[18px] rounded-full border border-slate-200')} style={{ backgroundColor: color }} />
   );
 };
 
@@ -24,7 +22,7 @@ type NicknameProps = {
   nickname: string;
 };
 const Nickname = ({ nickname }: NicknameProps) => {
-  return <b className='text-slate-500 text-sm'>{nickname}</b>;
+  return <b className="text-sm text-slate-500">{nickname}</b>;
 };
 
 type UserInfoProps = {
@@ -33,14 +31,7 @@ type UserInfoProps = {
 };
 export const UserInfo = ({ self = false, children }: UserInfoProps) => {
   return (
-    <div
-      className={cn(
-        'flex flex-row gap-1 items-center ml-1',
-        self ? 'self-end' : 'self-start'
-      )}
-    >
-      {children}
-    </div>
+    <div className={cn('ml-1 flex flex-row items-center gap-1', self ? 'self-end' : 'self-start')}>{children}</div>
   );
 };
 
@@ -51,10 +42,8 @@ type MessageProps = {
 const Message = ({ self = false, message }: MessageProps) => {
   return (
     <div
-      className={`max-w-md p-3 rounded-lg shadow-md break-words ${
-        self
-          ? 'self-end bg-blue-500 text-white'
-          : 'self-start bg-gray-200 text-gray-800'
+      className={`max-w-md break-words rounded-lg p-3 shadow-md ${
+        self ? 'self-end bg-blue-500 text-white' : 'self-start bg-gray-200 text-gray-800'
       }`}
     >
       {message}
@@ -70,14 +59,11 @@ export const ChatItem = ({ self = false, children }: ChatItemProps) => {
   return (
     <motion.div
       variants={chatItemVariants}
-      initial='hidden'
-      animate='visible'
-      exit='hidden'
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
       transition={{ duration: 0.3, ease: 'easeOut' }}
-      className={cn(
-        'max-w-md flex flex-col items-start gap-1',
-        self ? 'self-end' : 'self-start'
-      )}
+      className={cn('flex max-w-md flex-col items-start gap-1', self ? 'self-end' : 'self-start')}
     >
       {children}
     </motion.div>

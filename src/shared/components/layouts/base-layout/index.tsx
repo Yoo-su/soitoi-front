@@ -1,7 +1,8 @@
-"use client";
+'use client';
 
-import { ReactNode, useEffect, useState } from "react";
-import Header from "./header";
+import { ReactNode, useEffect, useState } from 'react';
+
+import Header from './header';
 
 type BaseLayoutProps = {
   children: ReactNode;
@@ -14,9 +15,7 @@ export const BaseLayout = ({ children }: BaseLayoutProps) => {
       <Header />
 
       {/* 콘텐츠 영역 */}
-      <main className="flex justify-center items-center pt-20 p-6">
-        {children}
-      </main>
+      <main className="flex items-center justify-center p-6 pt-20">{children}</main>
     </div>
   );
 };

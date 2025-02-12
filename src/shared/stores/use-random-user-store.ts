@@ -2,8 +2,9 @@
 
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
-import { generateRandomNickname, generateRandomColorCode } from '../utils';
+
 import { User } from '../types';
+import { generateRandomColorCode, generateRandomNickname } from '../utils';
 type RandomUserStoreState = {
   user: User | null;
   typingUsers: User[];
