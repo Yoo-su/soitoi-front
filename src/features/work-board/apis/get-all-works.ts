@@ -1,5 +1,6 @@
 import { API_URLS } from '@/shared/constants';
 import { axiosInstance } from '@/shared/plugins';
+
 import { Work } from '../types';
 
 export const getAllWorks = async () => {

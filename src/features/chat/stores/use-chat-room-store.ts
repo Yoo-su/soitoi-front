@@ -12,6 +12,5 @@ export const useChatRoomStore = create<ChatRoomStoreState>((set) => ({
   isChatModalOpen: false,
 
   setCurrentRoomID: (roomID) => set({ currentRoomID: roomID }),
-  toggleChatModal: () =>
-    set((state) => ({ isChatModalOpen: !state.isChatModalOpen })),
+  toggleChatModal: () => set((state) => ({ isChatModalOpen: !state.isChatModalOpen })),
 }));

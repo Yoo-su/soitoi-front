@@ -1,7 +1,9 @@
 'use client';
 
 import { create } from 'zustand';
+
 import { User } from '@/shared/types';
+
 import { DraggingInfo } from '../types';
 
 type BoardStoreState = {
@@ -17,6 +19,5 @@ export const useBoardStore = create<BoardStoreState>((set) => ({
   draggingInfos: [],
 
   setParticipants: (participants) => set({ participants: [...participants] }),
-  setDraggingInfos: (draggingInfos) =>
-    set({ draggingInfos: [...draggingInfos] }),
+  setDraggingInfos: (draggingInfos) => set({ draggingInfos: [...draggingInfos] }),
 }));

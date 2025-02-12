@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
+
+import { useRandomUserStore } from '@/shared/stores';
+
 import { useWorkSocketStore } from '../stores';
 import { Board } from './board';
-import { useRandomUserStore } from '@/shared/stores';
 import { TopBanner } from './top-banner';
 
 export const Container = () => {
@@ -14,7 +16,7 @@ export const Container = () => {
   }, [user]);
 
   return (
-    <div className='container flex flex-col items-center gap-3 bg-[#00839A] shadow-lg rounded-md p-8'>
+    <div className="container flex flex-col items-center gap-3 rounded-md bg-[#00839A] p-8 shadow-lg">
       <TopBanner />
       <Board />
     </div>

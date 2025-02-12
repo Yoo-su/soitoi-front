@@ -1,7 +1,9 @@
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
-import { useChatRoomStore, useChatSocketStore } from '../stores';
-import { useRandomUserStore } from '@/shared/stores';
 import { debounce } from 'lodash';
+import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+
+import { useRandomUserStore } from '@/shared/stores';
+
+import { useChatRoomStore, useChatSocketStore } from '../stores';
 import { Chat } from '../types';
 
 export const useChatInputHandler = () => {

@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
-import { useChatSocketStore } from '../stores';
-import { useRandomUserStore } from '@/shared/stores';
-import { Chat } from '../types';
-import { User } from '@/shared/types';
 import { useQueryClient } from '@tanstack/react-query';
+import { useEffect } from 'react';
+
 import { QUERY_KEYS } from '@/shared/constants/query-keys';
+import { useRandomUserStore } from '@/shared/stores';
+import { User } from '@/shared/types';
+
+import { useChatSocketStore } from '../stores';
+import { Chat } from '../types';
 
 export const useChatBoardHandler = () => {
   const queryClient = useQueryClient();
@@ -25,23 +27,13 @@ export const useChatBoardHandler = () => {
     if (!socketInstance) return;
 
     const handleTypingUsers = (typingUsers: User[]) => {
-      setTypingUsers(
-        typingUsers.filter(
-          (typingUser) => typingUser.nickname !== user?.nickname
-        )
-      );
+      setTypingUsers(typingUsers.filter((typingUser) => typingUser.nickname !== user?.nickname));
     };
 
-    const handleChatUpdates = (data: {
-      typingUsers: User[];
-      newChat: Chat;
-    }) => {
+    const handleChatUpdates = (data: { typingUsers: User[]; newChat: Chat }) => {
       const { typingUsers, newChat } = data;
       setTypingUsers([...typingUsers]);
-      queryClient.setQueryData(
-        QUERY_KEYS.chat.list.queryKey,
-        (oldData: Chat[] = []) => [...oldData, newChat]
-      );
+      queryClient.setQueryData(QUERY_KEYS.chat.list.queryKey, (oldData: Chat[] = []) => [...oldData, newChat]);
     };
 
     socketInstance.on('typing-users', handleTypingUsers);

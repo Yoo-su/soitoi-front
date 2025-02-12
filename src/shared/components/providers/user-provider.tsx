@@ -1,7 +1,8 @@
 'use client';
 
-import { useRandomUserStore } from '@/shared/stores';
 import { ReactNode, useEffect } from 'react';
+
+import { useRandomUserStore } from '@/shared/stores';
 
 type UserProviderProps = {
   children: ReactNode;
