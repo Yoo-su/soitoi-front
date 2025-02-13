@@ -4,13 +4,14 @@ import { DiCoda } from 'react-icons/di';
 import { useChatInputHandler } from '../hooks/use-chat-input-handler';
 
 export const ChatInput = () => {
-  const { inputRef, debouncedSetChatInput, handleSubmitMessage } = useChatInputHandler();
+  const { inputRef, debouncedSetChatInput, handleSubmitMessage, handleKeyPressEnter } = useChatInputHandler();
 
   return (
     <div className={'flew-row flex w-full items-center gap-4 rounded-lg border border-slate-100 p-4 shadow-md'}>
       <Input
         ref={inputRef}
         onChange={debouncedSetChatInput}
+        onKeyDown={handleKeyPressEnter}
         className={'grow rounded-md border-none px-2 focus:outline-none'}
         name={'chat'}
         placeholder={'메시지를 입력하세요. . .'}

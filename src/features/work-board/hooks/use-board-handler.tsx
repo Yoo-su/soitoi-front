@@ -18,7 +18,6 @@ export const useBoardHandler = () => {
   const { data: works } = useGetAllWorksQuery();
 
   const onDragStart = (start: DragStart) => {
-    console.log(start);
     socketInstance?.emit(WORK_DRAG_START, {
       user: user,
       workID: start.draggableId,
@@ -27,7 +26,6 @@ export const useBoardHandler = () => {
   };
 
   const onDragEnd = (result: DropResult) => {
-    console.log(result);
     socketInstance?.emit(WORK_DRAG_END, {
       user: user,
       status: result.destination?.droppableId,
