@@ -11,16 +11,10 @@ export const useChatInputHandler = () => {
   const user = useRandomUserStore((state) => state.user);
   const roomID = useChatRoomStore((state) => state.currentRoomID);
   const socketInstance = useChatSocketStore((state) => state.socketInstance);
-  const [inputMessage, setInputMessage] = useState<string>('');
 
-  const handleChangeChatInput = (event: ChangeEvent<HTMLInputElement>) => {
-    const message = event.target.value;
-    setInputMessage(message);
-  };
   const debouncedSetChatInput = useCallback(
     debounce((event: ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value;
-      handleChangeChatInput(event);
 
       if (value.trim() === '') {
         socketInstance?.emit('typing-chat', {
@@ -37,11 +31,12 @@ export const useChatInputHandler = () => {
   );
 
   const handleSubmitMessage = () => {
+    debouncedSetChatInput.flush();
     const chatItem: Omit<Chat, 'id'> = {
       room_id: roomID ?? '',
       nickname: user?.nickname ?? '',
       color: user?.color ?? '',
-      message: inputMessage,
+      message: inputRef?.current?.value ?? '',
       created_at: new Date().toLocaleDateString(),
     };
     socketInstance?.emit('chat-created', chatItem);
