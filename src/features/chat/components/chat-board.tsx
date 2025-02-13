@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from 'motion/react';
 import React, { useEffect, useRef } from 'react';
 import { SyncLoader } from 'react-spinners';
 
@@ -36,22 +37,32 @@ export const ChatBoard = () => {
       })}
 
       {/* 타이핑 중인 사용자가 있다면 목록 아래에 렌더링 */}
-      {typingUsers.map((user) => (
-        <ChatItem key={user.nickname + user.color}>
-          <ChatItem.UserInfo>
-            <ChatItem.Avatar color={user.color} />
-            <ChatItem.Nickname nickname={user.nickname} />
-            님이 입력중
-          </ChatItem.UserInfo>
-          <ChatItem.Message
-            message={
-              <div className={'flex w-36 flex-row items-center justify-center py-2'}>
-                <SyncLoader size={4} />
-              </div>
-            }
-          />
-        </ChatItem>
-      ))}
+
+      <AnimatePresence>
+        {typingUsers.map((user) => (
+          <motion.div
+            layout
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            key={user.nickname + user.color}
+          >
+            <ChatItem>
+              <ChatItem.UserInfo>
+                <ChatItem.Avatar color={user.color} />
+                <ChatItem.Nickname nickname={user.nickname} />
+                님이 입력중
+              </ChatItem.UserInfo>
+              <ChatItem.Message
+                message={
+                  <div className={'flex w-36 flex-row items-center justify-center py-2'}>
+                    <SyncLoader size={4} />
+                  </div>
+                }
+              />
+            </ChatItem>
+          </motion.div>
+        ))}
+      </AnimatePresence>
 
       {/* 스크롤 맨 아래 위치 */}
       <div ref={endOfMessagesRef} />

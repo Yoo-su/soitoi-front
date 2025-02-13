@@ -1,13 +1,6 @@
-import { motion } from 'framer-motion'; // 또는 motion one의 React API 사용
 import { ReactNode } from 'react';
 
 import { cn } from '@/shared/utils';
-
-// 애니메이션 Variants (재사용 가능)
-const chatItemVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0 },
-};
 
 type AvatarProps = {
   color: string;
@@ -57,16 +50,7 @@ type ChatItemProps = {
 };
 export const ChatItem = ({ self = false, children }: ChatItemProps) => {
   return (
-    <motion.div
-      variants={chatItemVariants}
-      initial="hidden"
-      animate="visible"
-      exit="hidden"
-      transition={{ duration: 0.3, ease: 'easeOut' }}
-      className={cn('flex max-w-md flex-col items-start gap-1', self ? 'self-end' : 'self-start')}
-    >
-      {children}
-    </motion.div>
+    <div className={cn('flex max-w-md flex-col items-start gap-1', self ? 'self-end' : 'self-start')}>{children}</div>
   );
 };
 

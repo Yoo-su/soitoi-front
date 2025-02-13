@@ -1,5 +1,5 @@
 import { debounce } from 'lodash';
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
 
 import { useRandomUserStore } from '@/shared/stores';
 
@@ -48,6 +48,11 @@ export const useChatInputHandler = () => {
     if (inputRef.current) inputRef.current.value = '';
   };
 
+  const handleKeyPressEnter = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key !== 'Enter') return;
+    handleSubmitMessage();
+  };
+
   useEffect(() => {
     return () => {
       debouncedSetChatInput.cancel(); // 컴포넌트 언마운트 시 debounce 함수 정리
@@ -57,6 +62,7 @@ export const useChatInputHandler = () => {
   return {
     inputRef,
     debouncedSetChatInput,
+    handleKeyPressEnter,
     handleSubmitMessage,
   };
 };

@@ -1,4 +1,5 @@
 import { Button } from '@headlessui/react';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { cn } from '@/shared/utils';
@@ -22,7 +23,6 @@ const Header = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // 스크롤 Y좌표가 80px을 넘어가면 scrolled 상태 활성화
       setScrolled(window.scrollY > 80);
     };
 
@@ -44,9 +44,9 @@ const Header = () => {
 
       <nav className={cn('hidden items-center gap-6 lg:flex')}>
         {navItems.map((item) => (
-          <a href={item.href} key={item.href} className="text-sm font-medium text-gray-800 hover:text-green-600">
+          <Link href={item.href} key={item.href} className="text-sm font-medium text-gray-800 hover:text-green-600">
             {item.title}
-          </a>
+          </Link>
         ))}
       </nav>
 

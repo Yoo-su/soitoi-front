@@ -8,7 +8,7 @@ import { Work } from '../types';
 
 type WorkCardProps = Work & { index: number };
 export const WorkCard = ({ id, title, created_by, index }: WorkCardProps) => {
-  const { draggingInfos } = useBoardStore();
+  const draggingInfos = useBoardStore((state) => state.draggingInfos);
 
   const draggingInfo = useMemo(() => {
     return draggingInfos.find((info) => info.workID === id.toString());
@@ -37,7 +37,7 @@ export const WorkCard = ({ id, title, created_by, index }: WorkCardProps) => {
                     exit={{ opacity: 0 }}
                     className="absolute left-0 top-0 flex size-full flex-col items-center justify-center gap-3 rounded-md bg-black text-white"
                   >
-                    <label className="text-xs">{draggingInfo.user.nickname}</label>
+                    <label className="text-xs">{draggingInfo.user.nickname}님이 옮기는 중입니다 ..</label>
                     <PropagateLoader size={2} color="#fff" />
                   </motion.div>
                 )}
