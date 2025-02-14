@@ -1,8 +1,9 @@
-import { Button } from '@headlessui/react';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 import { cn } from '@/shared/utils';
+
+import { Button } from '../../shadcn';
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);

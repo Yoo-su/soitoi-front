@@ -20,14 +20,14 @@ export const ChatPageComponent = ({ dehydratedChats }: ChatPageComponentProps) =
 
   return (
     <HydrationBoundary state={dehydratedChats}>
-      <div className={`container flex h-[800px] flex-row items-center justify-start gap-10 rounded-md bg-white`}>
+      <section className={`container flex h-[800px] flex-row items-center justify-start gap-10 rounded-md bg-white`}>
         <div className={'flex size-full flex-col gap-4'}>
           <ChatBoard />
           <ChatInput />
         </div>
 
         <RoomInfoPannel />
-      </div>
+      </section>
     </HydrationBoundary>
   );
 };
