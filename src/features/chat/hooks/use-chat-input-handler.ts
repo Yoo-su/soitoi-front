@@ -1,8 +1,9 @@
 import { debounce } from 'lodash';
-import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, KeyboardEvent, useCallback, useEffect, useRef } from 'react';
 
 import { useRandomUserStore } from '@/shared/stores';
 
+import { CHAT_CREATED, TYPING_CHAT } from '../constants';
 import { useChatRoomStore, useChatSocketStore } from '../stores';
 import { Chat } from '../types';
 
@@ -17,12 +18,12 @@ export const useChatInputHandler = () => {
       const value = event.target.value;
 
       if (value.trim() === '') {
-        socketInstance?.emit('typing-chat', {
+        socketInstance?.emit(TYPING_CHAT, {
           user: user,
           isTyping: false,
         });
       } else
-        socketInstance?.emit('typing-chat', {
+        socketInstance?.emit(TYPING_CHAT, {
           user: user,
           isTyping: true,
         });
@@ -39,7 +40,7 @@ export const useChatInputHandler = () => {
       message: inputRef?.current?.value ?? '',
       created_at: new Date().toLocaleDateString(),
     };
-    socketInstance?.emit('chat-created', chatItem);
+    socketInstance?.emit(CHAT_CREATED, chatItem);
     if (inputRef.current) inputRef.current.value = '';
   };
 

@@ -5,6 +5,7 @@ import { QUERY_KEYS } from '@/shared/constants/query-keys';
 import { useRandomUserStore } from '@/shared/stores';
 import { User } from '@/shared/types';
 
+import { CHAT_UPDATES, TYPING_USERS } from '../constants';
 import { useChatSocketStore } from '../stores';
 import { Chat } from '../types';
 
@@ -36,12 +37,12 @@ export const useChatBoardHandler = () => {
       queryClient.setQueryData(QUERY_KEYS.chat.list.queryKey, (oldData: Chat[] = []) => [...oldData, newChat]);
     };
 
-    socketInstance.on('typing-users', handleTypingUsers);
-    socketInstance.on('chat-updates', handleChatUpdates);
+    socketInstance.on(TYPING_USERS, handleTypingUsers);
+    socketInstance.on(CHAT_UPDATES, handleChatUpdates);
 
     return () => {
-      socketInstance.off('typing-users', handleTypingUsers);
-      socketInstance.off('chat-updates', handleChatUpdates);
+      socketInstance.off(TYPING_USERS, handleTypingUsers);
+      socketInstance.off(CHAT_UPDATES, handleChatUpdates);
     };
   }, [socketInstance]);
 

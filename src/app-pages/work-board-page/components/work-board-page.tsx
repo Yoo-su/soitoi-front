@@ -10,9 +10,9 @@ type WorkBoardPageComponentProps = {
 export const WorkBoardPageComponent = ({ dehydratedWorks }: WorkBoardPageComponentProps) => {
   return (
     <HydrationBoundary state={dehydratedWorks}>
-      <div className="flex min-h-[620px] w-full justify-center">
+      <section className="flex min-h-[620px] w-full justify-center">
         <Container />
-      </div>
+      </section>
     </HydrationBoundary>
   );
 };
