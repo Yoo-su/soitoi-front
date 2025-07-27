@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧪 WebSocket Playground
 
-## Getting Started
+**웹소켓을 직접 사용해보며 실시간 기능에 익숙해지기 위한 토이 프로젝트입니다.**
 
-First, run the development server:
+## 🎯 목적
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+이 프로젝트의 목표는 **웹소켓을 활용한 실시간 기능 구현 경험**을 쌓는 것입니다. 단순한 예제가 아니라, 실제로 웹소켓을 활용해 인터랙션이 필요한 기능들을 구현하면서 학습하는 데 초점을 두었습니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🧩 구현한 기능
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 1. 💬 실시간 익명 채팅방
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 사용자는 익명으로 채팅방에 참여하여 메시지를 주고받을 수 있습니다.
+- 메시지는 웹소켓을 통해 실시간으로 모든 참여자에게 전달됩니다.
+- 💡 **Typing Indicator** 기능:  
+  누군가 메시지를 입력 중이면 다른 사용자에게 해당 사용자가 입력 중임을 실시간으로 표시합니다.
 
-## Learn More
+### 2. 📋 실시간 칸반보드 (Drag & Drop)
 
-To learn more about Next.js, take a look at the following resources:
+- 칸반 스타일의 보드에서 아이템을 드래그하여 옮길 수 있습니다.
+- 이동 결과는 웹소켓을 통해 모든 사용자에게 실시간으로 반영됩니다.
+- 💡 **Drag Indicator** 기능:  
+  누군가 특정 아이템을 드래그 중이면, 다른 사용자에게 해당 항목이 현재 이동 중임을 실시간으로 보여줍니다.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 사용 기술 스택
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Frontend**: Next.js, Socket.IO-client, Zustand, Tanstack-Query
+- **Backend**: NestJS, Socket.IO
 
-## Deploy on Vercel
+## 📚 배운 점
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- 웹소켓 기반의 실시간 통신 구조 이해
+- 클라이언트-서버 간 이벤트 흐름 설계
+- 동시성 처리와 사용자 상태 관리
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
