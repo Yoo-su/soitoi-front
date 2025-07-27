@@ -1,27 +1,34 @@
-import { SOCKET_URLS } from '@/shared/constants';
-import { Socket, io } from 'socket.io-client';
+'use client';
+
+import { io, Socket } from 'socket.io-client';
 import { create } from 'zustand';
 
-type ChatStoreState = {
+import { SOCKET_URLS } from '@/shared/constants';
+import { User } from '@/shared/types';
+
+type WorkSocketStoreState = {
   socketInstance: Socket | null;
-  connect: () => void;
+  connect: (user: User) => void;
   disconnect: () => void;
 };
 
-export const useChatStore = create<ChatStoreState>((set, get) => ({
+export const useWorkSocketStore = create<WorkSocketStoreState>((set, get) => ({
   socketInstance: null,
 
   // 소켓 인스턴스가 없을 때만 생성하고, 연결 상태를 저장합니다.
-  connect: () => {
+  connect: (user: User) => {
     if (!get().socketInstance) {
-      const socket = io(SOCKET_URLS.CHAT, {
+      const socket = io(SOCKET_URLS.WORK_BOARD, {
         transports: ['websocket'],
+        auth: {
+          user: user,
+        },
       });
 
       socket.on('connect', () => {
         console.log('Socket connected with id:', socket.id);
       });
-      // 필요에 따라 다른 이벤트 핸들러들도 추가할 수 있습니다.
+
       set({ socketInstance: socket });
     }
   },

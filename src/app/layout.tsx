@@ -1,5 +1,12 @@
-import type { Metadata } from 'next';
 import './globals.css';
+
+import type { Metadata } from 'next';
+import { Noto_Serif_KR } from 'next/font/google';
+
+import { BaseLayout } from '@/shared/components/layouts';
+import { QueryProvider, UserProvider } from '@/shared/components/providers';
+
+const notoserif = Noto_Serif_KR({ weight: ['200'], subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'next-app',
@@ -12,8 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='kor'>
-      <body>{children}</body>
+    <html lang="ko" suppressHydrationWarning>
+      <body className={notoserif.className}>
+        <UserProvider>
+          <QueryProvider>
+            <BaseLayout>{children}</BaseLayout>
+          </QueryProvider>
+        </UserProvider>
+      </body>
     </html>
   );
 }
